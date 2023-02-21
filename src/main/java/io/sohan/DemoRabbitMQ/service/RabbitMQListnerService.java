@@ -14,10 +14,11 @@ public class RabbitMQListnerService {
 
     private SubscriptionService subscriptionService;
 
-    @RabbitListener(queues = {"q.sub-register"})
+    @RabbitListener(queues = {"subscriptionQueue"})
     public void onSubscribe(SubscriptionDto dto){
+        System.out.println("in consumer");
         try{
-            Thread.sleep(10000);
+            Thread.sleep(5000);
         }catch(InterruptedException e){
             System.out.println(e);
         }

@@ -30,7 +30,8 @@ public class RabbitBrokerController {
 
     @PostMapping("/job")
     public ResponseEntity<String> createJob(@RequestBody SubscriptionDto subscriptionDto){
-        rabbitTemplate.convertAndSend("","q.sub-register",subscriptionDto);
-        return ResponseEntity.ok("Successfull");
+//        System.out.println(exchangeName+"key="+routingKey);
+        rabbitTemplate.convertAndSend("direct-exchange","subscriptionQueue",subscriptionDto);
+        return ResponseEntity.ok("Subscription request sent successfully");
     }
 }
