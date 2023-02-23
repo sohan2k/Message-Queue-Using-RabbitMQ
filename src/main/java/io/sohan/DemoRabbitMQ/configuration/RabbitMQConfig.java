@@ -9,9 +9,14 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class RabbitMQConfig {
-    @Bean
+//    @Bean
     public Queue createSubscription(){
         return new Queue("subscriptionQueue",false);
+    }
+
+    @Bean
+    public Queue uploadImage(){
+        return new Queue("imageQueue",false);
     }
 
     @Bean
@@ -19,8 +24,13 @@ public class RabbitMQConfig {
         return new DirectExchange("direct-exchange");
     }
 
+//    @Bean
+//    Binding subscriptionBinding(Queue subscriptionQueue, DirectExchange exchange){
+//        return BindingBuilder.bind(subscriptionQueue).to(exchange).with("subscriptionQueue");
+//    }
+
     @Bean
-    Binding subscriptionBindig(Queue subscriptionQueue, DirectExchange exchange){
-        return BindingBuilder.bind(subscriptionQueue).to(exchange).with("subscriptionQueue");
+    Binding ImageBinding(Queue imageQueue, DirectExchange exchange){
+        return BindingBuilder.bind(imageQueue).to(exchange).with("imageQueue");
     }
 }
